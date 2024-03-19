@@ -1,0 +1,62 @@
+INSERT INTO department (id, department_name)
+VALUES (01,"Customer Service"),
+       (02, "Development"),
+       (03, "Finance"),
+       (04, "Human Resources"),
+       (05, "Marketing");
+
+
+INSERT INTO role (id, title, salary, department_id)
+VALUES (01,"Customer Service Rep", 38442, 01 ),
+       (02,"Call Center Agent", 34600, 01),
+       (03,"Customer Service Manager",78723, 01 ),
+       (04,"Chier Customer Officer", 129233, 01),
+       (05,"Product Manager", 89945, 02),
+       (06,"Software Developer", 75688, 02),
+       (07,"Tester", 63842, 02 ),
+       (08,"Software Architect", 82476, 02),
+       (09,"Accountant", 63651, 03),
+       (10,"Budget Analyst", 58628, 03 ),
+       (11,"Finance Administrator", 46900 , 03),
+       (12,"Chief Finance Officer", 128144, 03),
+       (13, "Finance Manager", 88511, 03),
+       (14,"Human Resources Representative", 49116, 04 ),
+       (15,"Human Resources Supervisor", 65818, 04),
+       (16,"Chief Human Resources Officer", 126230, 04),
+       (17,"Product Marketer",87050 ,05),
+       (18,"Event Planner", 63998,05),
+       (19,"Marketing Analyse", 60360 ,05),
+       (20,"Marketing Manager", 79663 ,05),
+       (21,"Chief Marketing Officer", 122350,05);
+
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (01,"Declan", "McClain" , 04, null ),
+       (02,"Oscar", "Sanches" , 12, null ),
+       (03,"Ismail", "Abbas" , 16, null ),
+       (04,"Nadia", "Bakshi", 21, null),
+       (05,"Melanie" ,"Cooper" , 01, 09 ),
+       (06,"Verna" ,"Santiago" , 01, 09 ),
+       (07,"Jimmy" ,"Shaffer" , 02, 09 ),
+       (08,"Vanessa" ,"Fernandez", 02, 09 ),
+       (09,"Cristina" ,"Charles", 03, 01),
+       (10,"Marcella" ,"Ayala",05, 04 ),
+       (11,"Grace" ,"Davies" , 06, 10 ),
+       (12,"Anita" ,"Jones" , 06, 10 ),
+       (13,"Casey" ,"Montes" ,07, 10 ),
+       (14,"Elsie" ,"Spears" , 08, 10 ),
+       (15,"Loren" ,"Marks" ,13, 02),
+       (16,"Rey" ,"Hudson" ,09, 15 ),
+       (17,"Rodrigo" ,"Prince" ,09, 15 ),
+       (18,"Tamika" ,"Floyd" ,10, 15 ),
+       (19, "Reynaldo" ,"Benjamin" ,11,15 ),
+       (20,"Benny" ,"Price" , 15, 03),
+       (21,"Lea" ,"Goodman" ,14, 20 ),
+       (22,"Nanette" ,"Kent" ,14, 20 ),
+       (23,"Deann" ,"Wise" ,14, 20 ),
+       (24,"Ivory" ,"Short" ,17, 04),
+       (25,"Guillermo" ,"Wagner" , 20, 04 ),
+       (26,"Bridget" ,"Mayer" ,18, 25 ),
+       (27,"Faith" ,"Bentley" ,19, 25 ),
+       (28,"Armand" ,"Burch" ,19, 25 );
+
+       
