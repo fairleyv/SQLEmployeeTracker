@@ -1,6 +1,8 @@
 const express = require('express');
 // Import and require mysql2
 const mysql = require('mysql2');
+const InquirerUtil = require('./utils/inquirerHelpers');
+const Sql = require('./utils/sqlHelpers')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -19,5 +21,14 @@ const db = mysql.createConnection(
     password: 'rootroot',
     database: 'employee_db'
   },
-  console.log(`Connected to the books_db database.`)
+
+  console.log(`Connected to the employee_db database.`)
 );
+
+
+global.db = db;
+
+const cli = new InquirerUtil();
+
+cli.managementOptionfn(db);
+

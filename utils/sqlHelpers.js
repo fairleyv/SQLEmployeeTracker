@@ -1,6 +1,20 @@
 const mysql = require('mysql2');
 
-function viewDepartments() {
- SELECT * FROM department;
+class SqlHelper {
+   constructor (db) {
+      this.db = db;
+   }
+
+   viewDepartments() {
+    db.query(`SELECT * FROM department`, function(err, results){
+       console.log(results);
+    });
+   }
+
 }
 
+
+
+
+
+module.exports = SqlHelper;
