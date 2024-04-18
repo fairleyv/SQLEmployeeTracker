@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2')
 
+const roleTitles = 
 const questions = [
     {type: "list",
     message: "What would you like to do?",
@@ -32,7 +33,7 @@ const questions = [
 {
     type: "input",
     message: "Please input your new department name",
-    name: 'department_name',
+    name: 'departmentName',
     when: (data) => data.choice ==='add a department',
     validate: function (lastName){
         let input = parseFloat(lastName);
@@ -90,7 +91,7 @@ const questions = [
         }
     }
 },
-// add an employee
+// add an employee branch
 {
     type: "input",
     message: "Please input employee first name",
@@ -120,35 +121,18 @@ const questions = [
     }
 },
 {
-    type: "input",
-    message: "Please input employee roleID",
+    type: "list",
+    message: "What is the employee's role?",
     name: 'roleID',
+    choices: 
     when: (data) => data.lastName,
-    validate: function (roleDepartment) {
-        let input = parseFloat(roleDepartment)
-        if (isNaN(input)) {
-            console.log("---input must be a number")
-            return false
-        } else {
-            return true
-        }
-    }
 },
 {
     type: "input",
-    message: "Please input employee managerID",
+    message: "Who is the employee's Manager?",
     name: 'managerID',
+    choices:[],
     when: (data) => data.roleID,
-    validate: function (roleDepartment) {
-        let input = parseFloat(roleDepartment)
-        if (isNaN(input)) {
-            console.log("---input must be a number")
-            return false
-        } else {
-            console.log('---Employee has been added!')
-            return true
-        }
-    }
 },
 // Update an Employee Role Branch
 {
@@ -194,26 +178,66 @@ class Inquirer {
     inquire() {
         inquirer.prompt(questions)
         .then (data => {
-            if(data.viewDepartment) {
+            console.log(data.viewDepartments)
+            if(data.viewDepartments) {
+                console.log(data.viewDepartments);
                 db.query(`SELECT * FROM department`, function(err, results){
                     console.log(results);
-                this.inquire()
             });
+        this.inquire()
         }
         if(data.viewRoles) {
             db.query(`SELECT * FROM role`, function(err, results){
                 console.log(results);
              })
+        this.inquire();
         }
         if (data.viewEmployees) {
             db.query(`SELECT * FROM employee`, function (err, results) {
                 console.log(results);
              })
+        this.inquire();
+        }
+        if(data.choice === 'add a department'){
+            db.query(`INSERT INTO department (department_name) VALUES ("${data.departmentName}")`, function (err, results) {
+            })
+        console.log('Department has been added!')
+        this.inquire();
+        }
+        if(data.choice === 'add a role'){
+            let departmentNum = 0;
+
+            if (data.roleDepartment === 'Customer Service') {
+                departmentNum = 1;
+            }
+            else if (data.roleDepartment === 'Development') {
+                departmentNum = 2;
+            }
+            else if (data.roleDepartment === 'Finance') {
+                departmentNum = 3;
+            }
+            else if (data.roleDepartment === 'Human Resources') {
+                departmentNum = 4;
+            }
+            else if (data.roleDepartment === 'Marketing') {
+                departmentNum = 5;
+            }
+            db.query(`INSERT INTO role (title, salary, department_id) VALUES ("${data.roleTitle}", "${data.roleSalary}", "${departmentNum}")`, function (err, results) {
+            })
+            console.log("Role has Been added!")
+            this.inquire();
+        }
+        if (data.choice === 'add an employee') {
+            let 
+            db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${data.firstName}","${data.lastName}","${data.firstName}","${data.firstName}")`)
         }
     });
     }
         
 }
+
+const CLI = new Inquirer;
+CLI.inquire();
 
 module.exports = Inquirer;
 
