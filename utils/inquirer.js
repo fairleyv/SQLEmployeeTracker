@@ -169,6 +169,7 @@ const questions = [
 {
     type: "confirm",
     message: 'Are you sure you want to quit?',
+    name: 'quit',
     when: (data) => data.choice === "quit",
 }
 ];
