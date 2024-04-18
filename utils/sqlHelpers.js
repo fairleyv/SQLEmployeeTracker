@@ -34,7 +34,7 @@ class SqlHelper {
       console.log(`Employee Successfully added`);
    }
    updateEmployeeRole(){
-      db.query(`Update `)
+      db.query(`Update employee SET "role_id" WHERE id = `)
    }
 }
 

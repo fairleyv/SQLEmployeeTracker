@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const sql = require('./sqlHelpers')
+const mysql = require('mysql2')
 
 const questions = [
     {type: "list",
@@ -25,7 +25,7 @@ const questions = [
 {
     type: "confirm",
     message: "View all Employees?",
-    name: 'viewDepartments',
+    name: 'viewEmployees',
     when: (data) => data.choice === 'view all employees'
 },
 // Add a Department branch
@@ -174,7 +174,48 @@ const questions = [
 }
 ];
 
-inquirer.prompt(questions);
+const db = mysql.createConnection(
+    {
+      host: 'localhost',
+      // MySQL username,
+      user: 'root',
+      // MySQL password
+      password: 'rootroot',
+      database: 'employee_db'
+    },
+  
+    console.log(`Connected to the employee_db database.`)
+  );
+
+class Inquirer {
+    constructor (db) {
+        this.db = db;
+    }
+    inquire() {
+        inquirer.prompt(questions)
+        .then (data => {
+            if(data.viewDepartment) {
+                db.query(`SELECT * FROM department`, function(err, results){
+                    console.log(results);
+                this.inquire()
+            });
+        }
+        if(data.viewRoles) {
+            db.query(`SELECT * FROM role`, function(err, results){
+                console.log(results);
+             })
+        }
+        if (data.viewEmployees) {
+            db.query(`SELECT * FROM employee`, function (err, results) {
+                console.log(results);
+             })
+        }
+    });
+    }
+        
+}
+
+module.exports = Inquirer;
 
 
 

@@ -1,7 +1,7 @@
 const express = require('express');
 // Import and require mysql2
 const mysql = require('mysql2');
-const InquirerUtil = require('./utils/inquirer');
+const Inquirer = require('./utils/inquirer');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
