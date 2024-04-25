@@ -29,6 +29,7 @@
 Installation requires an npm download of the dependencies listed in the package.json file. After the dependencies have been downloaded, the schema.sql file must be run to create the database and required tables. After this the db variable in the inquirer.js file must be updated with the user's MySQL username and MySql Password.  
 
 ## Usage 
+[SQLEmployeeMgmtVid.webm](https://github.com/fairleyv/SQLEmployeeTracker/assets/126346803/5622a467-c315-4392-b758-1ad22a2b29df)
 
 1. Type "npm start" into the terminal in order to begin running the program. 
 
