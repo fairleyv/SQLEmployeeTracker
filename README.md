@@ -23,6 +23,7 @@
   [Tests](#tests)
 
   [Questions](#questions)
+  
 ## Installation
 
 Installation requires an npm download of the dependencies listed in the package.json file. After the dependencies have been downloaded, the schema.sql file must be run to create the database and required tables. After this the db variable in the inquirer.js file must be updated with the user's MySQL username and MySql Password.  
