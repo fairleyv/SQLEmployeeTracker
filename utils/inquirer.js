@@ -190,17 +190,17 @@ class Inquirer {
             if(data.viewDepartments) {
                 console.log(data.viewDepartments);
                 db.query(`SELECT * FROM department`, function(err, results){
-                    console.log(results);
+                    console.table(results);
             });
         }
         if(data.viewRoles) {
             db.query(`SELECT * FROM role`, function(err, results){
-                console.log(results);
+                console.table(results);
              })
         }
         if (data.viewEmployees) {
             db.query(`SELECT * FROM employee`, function (err, results) {
-                console.log(results);
+                console.table(results);
              })
         }
         if(data.choice === 'add a department'){
